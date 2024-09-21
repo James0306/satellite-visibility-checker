@@ -1,3 +1,5 @@
+<h1 align="center">Satellite Visibility Checker</h1>
+
 This project contains a Python script that calculates the visibility of a satellite from a specified ground station location using satellite position data. The project also includes unit tests to ensure the correctness of the main functionality.
 
 # Table of Contents
@@ -15,11 +17,20 @@ To run this project, you need to have Python installed on your system. This proj
 
 ## To Install:
 
+Note these are example locations - please update with your own preferences.
+
+1. **Make new temporary directory for cloning purposes**:
+   ```bash
+   mkdir C:\Temp\TestClone
+
+   cd C:\Temp\TestClone
+   ```
+
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/James0306/satellite-visibility-checker.git
 
-   cd satellite_visibility-checker
+   cd satellite-visibility-checker
    ```
 
 # Usage of Satellite Visibility Analysis
@@ -40,7 +51,6 @@ To analyze satellite visibility, follow these steps:
 2. **Run the Script**:
    Open your Command Prompt (cmd), navigate to the project directory, and execute the main script using the following commands:
    ```bash
-   cd "C:\Users\jtahe\Documents\Python Projects\Blue Skies Space"
    python satellite_visibility.py
    ```
 
