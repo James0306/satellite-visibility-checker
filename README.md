@@ -17,8 +17,9 @@ To run this project, you need to have Python installed on your system. This proj
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/satellite_visibility.git
-   cd satellite_visibility
+   git clone https://github.com/James0306/satellite-visibility-checker.git
+
+   cd satellite_visibility-checker
    ```
 
 # Usage of Satellite Visibility Analysis
