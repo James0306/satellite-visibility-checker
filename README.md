@@ -42,7 +42,7 @@ This section outlines how to use the Satellite Visibility Analysis script to det
 To analyze satellite visibility, follow these steps:
 
 1. **Prepare Your Input Data**:
-   Ensure you have a CSV file containing satellite position data in the specified format. The CSV should include the following columns:
+   Ensure you have a CSV file named 'satellite_positions.csv' which contains satellite position data in the following specified format. The CSV should include the following data with an initial line for the headings:
    - `Time (iso)`: ISO formatted timestamps (e.g., `2024-09-11T00:00:00Z`)
    - `RA (GCRS) [deg]`: Right Ascension in degrees (e.g., `87.958413`)
    - `Dec (GCRS) [deg]`: Declination in degrees (e.g., `-39.063465`)
