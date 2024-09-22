@@ -25,12 +25,15 @@ Notes:
     Ensure that the CSV file follows the specified format with columns:
     'Time (iso)', 'RA (GCRS) [deg]', 'Dec (GCRS) [deg]', 'Distance (GCRS) [km]'.
 """
+##########################################IMPORTS##########################################
 
 import numpy as np
 import pandas as pd
 from astropy.time import Time
 from astropy.coordinates import EarthLocation, AltAz, SkyCoord
 import astropy.units as u
+
+##########################################CONSTANTS##########################################
 
 # Constants for the file input and outputs
 INPUT_FILE = "satellite_positions.csv"
@@ -42,12 +45,15 @@ GROUND_STATION_LON = 20.3493  # Longitude (degrees)
 MIN_ALTITUDE = 10.0  # Minimum observable altitude (degrees)
 MAX_ALTITUDE = 85.0  # Maximum observable altitude (degrees)
 
+####################################FUNCTION DEFINITIONS####################################
+
 def load_satellite_data(file_path):
     """Load satellite data from a CSV file."""
     return pd.read_csv(file_path)
 
 def clean_time_column(sat_data):
     """Clean the Time column and convert it to a list of valid times."""
+    #Removes inherent NaN value, converts to string, removes whitespace, converts empty to np.nan, then removes NaN value again.
     valid_times = sat_data['Time (iso)'].dropna().astype(str).str.strip().replace('', np.nan).dropna()
 
     # Check if valid_times is empty
@@ -98,6 +104,8 @@ def main(file_path, output_file):
     # Write results to file
     write_to_file(visible_times, output_file)
     print(f"The satellite visibility times have been written to {output_file}")
+
+########################################CALLING MAIN########################################
 
 if __name__ == "__main__":
     main(INPUT_FILE, OUTPUT_FILE)
