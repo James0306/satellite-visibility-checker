@@ -1,8 +1,48 @@
+"""
+Author: James Aherne
+Date: 2024-09-22
+Project: Satellite Visibility Checker
+Description:
+    This script calculates the visibility of a satellite from a specified ground station.
+    It reads satellite position data from a CSV file, converts celestial coordinates
+    (RA, Dec, Distance) into Altitude and Azimuth using the ground station's location,
+    and returns the Altitude and Azimuth angles for further analysis.
+    For more information, please refer to the README.md file provided.
+
+Dependencies:
+    - astropy
+    - numpy
+    - pandas
+
+Files:
+    - satellite_visibility.py: Main script for calculating satellite visibility.
+    - test_satellite_visibility.py: Unit tests to ensure the correctness of the script.
+    - satellite_positions.csv: Provides satellite positional data.
+    - visibility_results.csv: Provides dates and times when the satellite is visible
+      from the ground station within the provided paraemters.
+
+
+Usage:
+    Run `satellite_visibility.py` with a CSV input containing satellite position data,
+    or run the tests with `python -m unittest test_satellite_visibility.py`.
+
+License:
+    This project is licensed under the MIT License.
+
+Notes:
+    Ensure that the CSV file follows the specified format with columns:
+    'Time (iso)', 'RA (GCRS) [deg]', 'Dec (GCRS) [deg]', 'Distance (GCRS) [km]'.
+"""
+
 import numpy as np
 import pandas as pd
 from astropy.time import Time
 from astropy.coordinates import EarthLocation, AltAz, SkyCoord
 import astropy.units as u
+
+# Constants for the file input and outputs
+INPUT_FILE = "satellite_positions.csv"
+OUTPUT_FILE = "visibility_results.csv"
 
 # Constants for the ground station location and visibility limits
 GROUND_STATION_LAT = 78.7199  # Latitude (degrees)
@@ -63,6 +103,4 @@ def main(file_path, output_file):
     print(f"The satellite visibility times have been written to {output_file}")
 
 if __name__ == "__main__":
-    file_path = 'satellite_positions.csv'
-    output_file = 'visible_times.txt'  # Output file to store visibility times
-    main(file_path, output_file)
+    main(INPUT_FILE, OUTPUT_FILE)

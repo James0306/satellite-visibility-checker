@@ -56,7 +56,7 @@ To analyze satellite visibility, follow these steps:
    ```
 
 3. **Read the Results**:
-   A file will be generated called 'visible_times.txt' within the satellite-visibility-checker directory. This will store the dates and times that the satellite is visible from the ground station.
+   A file will be generated called 'visible_times.csv' within the satellite-visibility-checker directory. This will store the dates and times that the satellite is visible from the ground station.
 
 
 This section outlines how to use the Satellite Visibility Analysis script to determine the visibility of a satellite from a specified ground station.
@@ -85,7 +85,7 @@ python -m unittest test_satellite_visibility.py
 
 # Uninstallation
 
-If satisfied with the results of the satellite_visibility.py, test_satellite_visibility.py and output visible_times.txt, then we can uninstall the satellite-visibility-directory to clean up your device. Enter the following command into command prompt to delete the directory:
+If satisfied with the results of the satellite_visibility.py, test_satellite_visibility.py and output visible_times.csv, then we can uninstall the satellite-visibility-directory to clean up your device. Enter the following command into command prompt to delete the directory:
 ```bash
 Remove-Item -Path "C:\Temp\satellite-visibility-checker" -Recurse -Force
 ```
