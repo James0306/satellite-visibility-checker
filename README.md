@@ -22,9 +22,9 @@ Note these are example locations - please update with your own preferences.
 
 1. **Make new temporary directory for cloning purposes**:
    ```bash
-   mkdir C:\Temp\TestClone
+   mkdir C:\Temp
 
-   cd C:\Temp\TestClone
+   cd C:\Temp
    ```
 
 1. **Clone the Repository**:
@@ -87,5 +87,5 @@ python -m unittest test_satellite_visibility.py
 
 If satisfied with the results of the satellite_visibility.py, test_satellite_visibility.py and output visible_times.txt, then we can uninstall the satellite-visibility-directory to clean up your device. Enter the following command into command prompt to delete the directory:
 ```bash
-Remove-Item -Path "C:\Temp\TestClone" -Recurse -Force
+Remove-Item -Path "C:\Temp\satellite-visibility-checker" -Recurse -Force
 ```
