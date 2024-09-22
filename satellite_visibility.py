@@ -21,14 +21,6 @@ Files:
     - visibility_results.csv: Provides dates and times when the satellite is visible
       from the ground station within the provided paraemters.
 
-
-Usage:
-    Run `satellite_visibility.py` with a CSV input containing satellite position data,
-    or run the tests with `python -m unittest test_satellite_visibility.py`.
-
-License:
-    This project is licensed under the MIT License.
-
 Notes:
     Ensure that the CSV file follows the specified format with columns:
     'Time (iso)', 'RA (GCRS) [deg]', 'Dec (GCRS) [deg]', 'Distance (GCRS) [km]'.

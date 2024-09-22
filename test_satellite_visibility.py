@@ -26,13 +26,6 @@ Usage:
     python -m unittest test_satellite_visibility.py
     ```
 
-Files:
-    - test_satellite_visibility.py: This unit test file.
-    - satellite_visibility.py: The main script being tested.
-
-License:
-    This project is licensed under the MIT License.
-
 Notes:
     Ensure that the main script (`satellite_visibility.py`) and necessary input data are
     in the smae directory as this script before running these tests.
