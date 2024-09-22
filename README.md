@@ -4,6 +4,7 @@ This project contains a Python script that calculates the visibility of a satell
 
 # Table of Contents
 
+- [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Usage](#usage-of-satellite-visibility-analysis)
 - [Unit Tests](#unit-tests-for-satellite-visibility-analysis)
@@ -27,33 +28,37 @@ This project requires the following Python libraries:
 4. **`unittest`**:
    - Python’s built-in testing framework, used for running unit tests to ensure that the code functions as expected.
 
+# Installation
+
+To run this project, you need to have Python installed on your Windows system. This project has been developed using Python 3.11 on Windows 11.
+
 ## Installation of Dependencies
 
-To install the dependencies, use the following command:
+To install the dependencies, use the following command within your Command Prompt (cmd):
 
 ```bash
 pip install numpy astropy pandas
 ```
 
-# Installation
-
-To run this project, you need to have Python installed on your Windows system. This project has been developed using Python 3.11 on Windows 11.
-
-## To Install:
+## Installation of satellite-visibility-checker:
 
 Note these are example locations - please update with your own preferences.
 
 1. **Make new temporary directory for cloning purposes**:
+Enter the following commands within your Command Prompt (cmd).
    ```bash
    mkdir C:\Temp
-
+   ```
+   ```bash
    cd C:\Temp
    ```
 
-1. **Clone the Repository**:
+2. **Clone the Repository**:
+Enter the following commands within your Command Prompt (cmd).
    ```bash
    git clone https://github.com/James0306/satellite-visibility-checker.git
-
+   ```
+   ```bash
    cd satellite-visibility-checker
    ```
 
@@ -69,7 +74,7 @@ This section outlines how to use the Satellite Visibility Analysis script to det
    - `Distance (GCRS) [km]`: Distance from the center of the Earth in kilometers (e.g., `7067.917061`)
 
 2. **Run the Script**:
-   Open your Command Prompt (cmd), navigate to the project directory, and execute the main script using the following commands:
+   Open your Command Prompt, navigate to the project directory, and execute the main script using the following commands:
    ```bash
    python satellite_visibility.py
    ```
