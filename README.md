@@ -6,7 +6,11 @@ This project contains a Python script that calculates the visibility of a satell
 
 - [Dependencies](#dependencies)
 - [Installation](#installation)
+   - [Installation of Dependencies](#installation-of-dependencies)
+   - [Installation of Satellite-visibility-checker](#installation-of-satellite-visibility-checker)
 - [Usage](#usage-of-satellite-visibility-analysis)
+   - [Assumptions](#assumptions)
+   - [Running the Checker](#running-the-checker)
 - [Unit Tests](#unit-tests-for-satellite-visibility-analysis)
   - [Test Coverage](#test-coverage)
   - [Running the Tests](#running-the-tests)
@@ -62,9 +66,19 @@ Enter the following commands within your Command Prompt (cmd).
    cd satellite-visibility-checker
    ```
 
-# Usage of Satellite Visibility Analysis
+# Usage of Satellite Visibility Script
 
 This section outlines how to use the Satellite Visibility Analysis script to determine the visibility of a satellite from a specified ground station.
+
+## Assumptions
+This section outlines any assumptions that have been made when generating these scripts:
+1. **Ground Station Altitude**:
+   The ground station has not been provided with an altitude, only longitude and latitude. Therefore when passed to the EarthLocation class within AstroPy - it has been set to a default value of 0km.
+2. **Ground Station Surrounding Terrain**:
+   The ground station has been assumed to have a clear line of sight to the horizon in all directions, with no obstacles due
+   to terrain or buildings.
+
+## Running the Checker
 
 1. **Prepare Your Input Data**:
    Ensure you have a CSV file named 'satellite_positions.csv' which contains satellite position data in the following specified format with an initial line for the headings:
