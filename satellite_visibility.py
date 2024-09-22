@@ -46,19 +46,20 @@ def load_satellite_data(file_path):
     """Load satellite data from a CSV file."""
     return pd.read_csv(file_path)
 
-def convert_to_altaz(sat_data, ground_station_location):
-    """Convert satellite positions to Altitude and Azimuth."""
-    # Clean the Time column - method developed during unit testing.
+def clean_time_column(sat_data):
+    """Clean the Time column and convert it to a list of valid times."""
     valid_times = sat_data['Time (iso)'].dropna().astype(str).str.strip().replace('', np.nan).dropna()
 
     # Check if valid_times is empty
     if valid_times.empty:
         raise ValueError("No valid time data available.")
+    
+    # Convert the cleaned times to astropy Time objects
+    return Time(valid_times.tolist(), format='iso')
 
-    # Convert to astropy Time
-    times = Time(valid_times.tolist(), format='iso')
-
-    # Satellite coordinates (with units specified) - otherwise expects rad as default.
+def convert_to_altaz(sat_data, times, ground_station_location):
+    """Convert satellite positions to Altitude and Azimuth using cleaned times."""
+    # Satellite coordinates (with units specified)
     satellite_coords = SkyCoord(
         ra=sat_data['RA (GCRS) [deg]'].values * u.deg, 
         dec=sat_data['Dec (GCRS) [deg]'].values * u.deg, 
@@ -86,8 +87,11 @@ def main(file_path, output_file):
     sat_data = load_satellite_data(file_path)
     ground_station_location = EarthLocation(lat=GROUND_STATION_LAT * u.deg, lon=GROUND_STATION_LON * u.deg)
     
-    # Convert to Altitude and Azimuth, then find visibility
-    altitudes, _ = convert_to_altaz(sat_data, ground_station_location)
+    # Clean the time data
+    times = clean_time_column(sat_data)
+    
+    # Convert to Altitude and Azimuth using cleaned times, then find visibility
+    altitudes, _ = convert_to_altaz(sat_data, times, ground_station_location)
     visible_times = find_visibility(sat_data, altitudes)
     
     # Write results to file

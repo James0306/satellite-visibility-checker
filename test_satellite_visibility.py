@@ -8,7 +8,7 @@ Description:
     time conversion, and coordinate transformation.
 
 Tests:
-    - test_data_cleaning: Ensures that invalid or missing data is correctly removed.
+    - test_clean_time_column: Ensures that invalid or missing time data is correctly removed.
     - test_time_conversion: Verifies that time data is converted to `astropy.time.Time` objects.
     - test_coordinate_transformation: Confirms that RA, Dec, and Distance are correctly
       transformed into Altitude and Azimuth angles.
@@ -21,7 +21,7 @@ Dependencies:
 
 Notes:
     Ensure that the main script (`satellite_visibility.py`) and necessary input data are
-    in the smae directory as this script before running these tests.
+    in the same directory as this script before running these tests.
 """
 
 import unittest
@@ -30,7 +30,7 @@ import numpy as np
 from astropy.coordinates import EarthLocation
 from astropy.time import Time
 from astropy import units as u
-from satellite_visibility import convert_to_altaz
+from satellite_visibility import clean_time_column, convert_to_altaz
 
 class TestSatelliteVisibility(unittest.TestCase):
 
@@ -45,31 +45,33 @@ class TestSatelliteVisibility(unittest.TestCase):
 
         self.ground_station_location = EarthLocation(lat=78.7199, lon=20.3493)
 
-    def test_data_cleaning(self):
-        # Test for NaN removal
+    def test_clean_time_column(self):
+        # Test for NaN removal and cleaning of time data
         data_with_nan = pd.DataFrame({
-            'Time (iso)': ['2024-09-11 00:00:00.000', None],
-            'RA (GCRS) [deg]': [87.958, 87.126],
-            'Dec (GCRS) [deg]': [-39.063, -35.471],
-            'Distance (GCRS) [km]': [7067.917, 7067.734]
+            'Time (iso)': ['2024-09-11 00:00:00.000', None, ' '],
+            'RA (GCRS) [deg]': [87.958, 87.126, 87.500],
+            'Dec (GCRS) [deg]': [-39.063, -35.471, -36.000],
+            'Distance (GCRS) [km]': [7067.917, 7067.734, 7070.000]
         })
         
-        # Clean the Time column
-        valid_times = data_with_nan['Time (iso)'].dropna().astype(str).str.strip().replace('', np.nan).dropna()
+        # Clean the Time column using the new clean_time_column function
+        cleaned_times = clean_time_column(data_with_nan)
         
-        # Ensure valid_times contains only non-empty entries
-        self.assertEqual(len(valid_times), 1)  # Should only have 1 valid time
-
+        # Ensure only valid times are returned
+        self.assertEqual(len(cleaned_times), 1)  # Should only have 1 valid time
+        self.assertEqual(cleaned_times.isot[0], '2024-09-11T00:00:00.000')  # Ensure correct time remains
 
     def test_time_conversion(self):
         # Check that valid time strings convert to astropy Time objects
-        valid_times = self.valid_data['Time (iso)']
-        times = Time(valid_times.tolist(), format='iso')
+        times = clean_time_column(self.valid_data)
         self.assertEqual(len(times), 2)  # Should have 2 time objects
+        self.assertIsInstance(times, Time)
 
     def test_coordinate_transformation(self):
         # Use known values for transformation
-        altitudes, azimuths = convert_to_altaz(self.valid_data, self.ground_station_location)
+        times = clean_time_column(self.valid_data)
+        altitudes, azimuths = convert_to_altaz(self.valid_data, times, self.ground_station_location)
+        
         self.assertIsInstance(altitudes, np.ndarray)  # Ensure output is a numpy array
         self.assertIsInstance(azimuths, np.ndarray)
 
@@ -82,7 +84,8 @@ class TestSatelliteVisibility(unittest.TestCase):
             'Distance (GCRS) [km]': [7067.917]
         })
         with self.assertRaises(ValueError):
-            convert_to_altaz(invalid_data, self.ground_station_location)
+            times = clean_time_column(invalid_data)
+            convert_to_altaz(invalid_data, times, self.ground_station_location)
 
 if __name__ == '__main__':
     unittest.main(exit=False)  # Suppresses SystemExit
