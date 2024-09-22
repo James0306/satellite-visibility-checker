@@ -9,7 +9,7 @@ This project contains a Python script that calculates the visibility of a satell
 - [Unit Tests](#unit-tests-for-satellite-visibility-analysis)
   - [Test Coverage](#test-coverage)
   - [Running the Tests](#running-the-tests)
-- [Un-Installation](#how-to-uninstall)
+- [Un-Installation](#uninstallation)
 
 
 # Installation
