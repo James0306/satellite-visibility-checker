@@ -9,11 +9,12 @@ This project contains a Python script that calculates the visibility of a satell
 - [Unit Tests](#unit-tests-for-satellite-visibility-analysis)
   - [Test Coverage](#test-coverage)
   - [Running the Tests](#running-the-tests)
+- [Un-Installation](#how-to-uninstall)
 
 
 # Installation
 
-To run this project, you need to have Python installed on your system. This project has been developed using Python 3.11.
+To run this project, you need to have Python installed on your Windows system. This project has been developed using Python 3.11 on Windows 11.
 
 ## To Install:
 
@@ -54,6 +55,9 @@ To analyze satellite visibility, follow these steps:
    python satellite_visibility.py
    ```
 
+3. **Read the Results**:
+   A file will be generated called 'visible_times.txt' within the satellite-visibility-checker directory. This will store the dates and times that the satellite is visible from the ground station.
+
 
 This section outlines how to use the Satellite Visibility Analysis script to determine the visibility of a satellite from a specified ground station.
 
@@ -79,3 +83,9 @@ To run the unit tests, use the following command in your terminal:
 python -m unittest test_satellite_visibility.py
 ```
 
+# Uninstallation
+
+If satisfied with the results of the satellite_visibility.py, test_satellite_visibility.py and output visible_times.txt, then we can uninstall the satellite-visibility-directory to clean up your device. Enter the following command into command prompt to delete the directory:
+```bash
+Remove-Item -Path "C:\Temp\TestClone" -Recurse -Force
+```
