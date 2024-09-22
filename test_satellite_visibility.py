@@ -19,13 +19,6 @@ Dependencies:
     - numpy
     - astropy
 
-Usage:
-    To run the unit tests, execute the following command in your terminal:
-    
-    ```bash
-    python -m unittest test_satellite_visibility.py
-    ```
-
 Notes:
     Ensure that the main script (`satellite_visibility.py`) and necessary input data are
     in the smae directory as this script before running these tests.
