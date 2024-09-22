@@ -80,7 +80,8 @@ def find_visibility(sat_data, altitudes):
 
 def write_to_file(visible_times, output_file):
     """Write the visible times to a specified output file."""
-    visible_times.to_csv(output_file, index=False, header=False)
+    visible_times.to_csv(output_file, index=False, header=['Visible Times'])
+
 
 def main(file_path, output_file):
     # Load satellite data and define ground station location
