@@ -53,7 +53,8 @@ def load_satellite_data(file_path):
 
 def clean_time_column(sat_data):
     """Clean the Time column and convert it to a list of valid times."""
-    #Removes inherent NaN value, converts to string, removes whitespace, converts empty to np.nan, then removes NaN value again.
+    # Removes inherent NaN values, converts the 'Time (iso)' column to string, strips whitespace, 
+    # replaces empty strings with np.nan, and then drops any remaining NaN values.
     valid_times = sat_data['Time (iso)'].dropna().astype(str).str.strip().replace('', np.nan).dropna()
 
     # Check if valid_times is empty
@@ -73,15 +74,17 @@ def convert_to_altaz(sat_data, times, ground_station_location):
         frame='gcrs', obstime=times
     )
 
-    # Convert coordinates to AltAz
+    # Convert coordinates to AltAz (Altitude and Azimuth)
     altaz_coords = satellite_coords.transform_to(AltAz(obstime=times, location=ground_station_location))
     
-    return altaz_coords.alt.deg, altaz_coords.az.deg
+    return altaz_coords.alt.deg # To also return azimuth angle, use: , altaz_coords.az.deg
 
 
 def find_visibility(sat_data, altitudes):
     """Identify visible times for the satellite."""
+    #Generate True/False mask
     visibility_mask = (altitudes >= MIN_ALTITUDE) & (altitudes <= MAX_ALTITUDE)
+    #Return filtered results.
     return sat_data['Time (iso)'][visibility_mask]
 
 def write_to_file(visible_times, output_file):
@@ -90,7 +93,8 @@ def write_to_file(visible_times, output_file):
 
 
 def main(file_path, output_file):
-    # Load satellite data and define ground station location
+    # Load satellite data and define ground station location.
+    #Note, as height is not provided to EarthLocation, this is set to default - sea level (0 meters).
     sat_data = load_satellite_data(file_path)
     ground_station_location = EarthLocation(lat=GROUND_STATION_LAT * u.deg, lon=GROUND_STATION_LON * u.deg)
     
@@ -98,7 +102,7 @@ def main(file_path, output_file):
     times = clean_time_column(sat_data)
     
     # Convert to Altitude and Azimuth using cleaned times, then find visibility
-    altitudes, _ = convert_to_altaz(sat_data, times, ground_station_location)
+    altitudes = convert_to_altaz(sat_data, times, ground_station_location)
     visible_times = find_visibility(sat_data, altitudes)
     
     # Write results to file

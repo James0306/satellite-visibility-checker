@@ -70,12 +70,10 @@ class TestSatelliteVisibility(unittest.TestCase):
         self.assertIsInstance(times, Time)
 
     def test_coordinate_transformation(self):
-        # Use known values for transformation
-        times = clean_time_column(self.valid_data)
-        altitudes, azimuths = convert_to_altaz(self.valid_data, times, self.ground_station_location)
-        
-        self.assertIsInstance(altitudes, np.ndarray)  # Ensure output is a numpy array
-        self.assertIsInstance(azimuths, np.ndarray)
+            # Check altitude values
+            altitudes = convert_to_altaz(self.valid_data, Time(self.valid_data['Time (iso)'].tolist(), format='iso'), self.ground_station_location)
+            self.assertIsInstance(altitudes, np.ndarray)  # Ensure output is a numpy array
+            self.assertEqual(len(altitudes), len(self.valid_data))  # Should have the same number of altitude values as input data
 
     def test_invalid_input(self):
         # Test function raises error for invalid data
