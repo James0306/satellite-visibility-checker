@@ -1,3 +1,43 @@
+"""
+Author: James Aherne
+Date: 2024-09-22
+Project: Satellite Visibility Checker - Unit Tests
+Description:
+    This script contains unit tests for the `satellite_visibility.py` script.
+    It tests various aspects of the satellite visibility calculations, including data cleaning,
+    time conversion, and coordinate transformation.
+
+Tests:
+    - test_data_cleaning: Ensures that invalid or missing data is correctly removed.
+    - test_time_conversion: Verifies that time data is converted to `astropy.time.Time` objects.
+    - test_coordinate_transformation: Confirms that RA, Dec, and Distance are correctly
+      transformed into Altitude and Azimuth angles.
+
+Dependencies:
+    - unittest
+    - pandas
+    - numpy
+    - astropy
+
+Usage:
+    To run the unit tests, execute the following command in your terminal:
+    
+    ```bash
+    python -m unittest test_satellite_visibility.py
+    ```
+
+Files:
+    - test_satellite_visibility.py: This unit test file.
+    - satellite_visibility.py: The main script being tested.
+
+License:
+    This project is licensed under the MIT License.
+
+Notes:
+    Ensure that the main script (`satellite_visibility.py`) and necessary input data are
+    in the smae directory as this script before running these tests.
+"""
+
 import unittest
 import pandas as pd
 import numpy as np
