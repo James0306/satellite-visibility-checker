@@ -42,7 +42,7 @@ pip install numpy astropy pandas
 
 ## Installation of satellite-visibility-checker:
 
-Note these are example locations - please update with your own preferences.
+Please note that these directory locations have been used as an example - and can be updated to your own preference of location on your device.
 
 1. **Make new temporary directory for cloning purposes**:
 Enter the following commands within your Command Prompt (cmd).
