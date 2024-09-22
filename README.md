@@ -11,6 +11,29 @@ This project contains a Python script that calculates the visibility of a satell
   - [Running the Tests](#running-the-tests)
 - [Un-Installation](#uninstallation)
 
+# Dependencies
+
+This project requires the following Python libraries:
+
+1. **`numpy`**:
+   - Used for handling numerical operations and managing arrays, such as satellite position data.
+
+2. **`astropy`**:
+   - Provides tools for astronomical calculations, including handling time formats (`Time` objects) and performing coordinate transformations between different systems (e.g., RA/Dec to Alt/Az).
+
+3. **`pandas`**:
+   - Used for data manipulation and analysis, particularly for reading and cleaning satellite data from CSV files.
+
+4. **`unittest`**:
+   - Python’s built-in testing framework, used for running unit tests to ensure that the code functions as expected.
+
+## Installation of Dependencies
+
+To install the dependencies, use the following command:
+
+```bash
+pip install numpy astropy pandas
+```
 
 # Installation
 
@@ -37,10 +60,6 @@ Note these are example locations - please update with your own preferences.
 # Usage of Satellite Visibility Analysis
 
 This section outlines how to use the Satellite Visibility Analysis script to determine the visibility of a satellite from a specified ground station.
-
-## Running the Main Script
-
-To analyze satellite visibility, follow these steps:
 
 1. **Prepare Your Input Data**:
    Ensure you have a CSV file named 'satellite_positions.csv' which contains satellite position data in the following specified format with an initial line for the headings:
